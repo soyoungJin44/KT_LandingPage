@@ -1,0 +1,47 @@
+:root {
+  font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  color: #172b4d;
+  background: #f4f7fb;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.app-shell {
+  display: grid;
+  min-height: 100vh;
+  padding: 10vw;
+  align-content: center;
+  background: linear-gradient(135deg, #f4f7fb 0%, #e9f3f5 100%);
+}
+
+.eyebrow {
+  margin: 0 0 1rem;
+  color: #087f8c;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+h1 {
+  max-width: 720px;
+  margin: 0;
+  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  letter-spacing: -0.07em;
+  line-height: 1.05;
+}
+
+.description {
+  margin: 1.5rem 0 0;
+  color: #5b6b82;
+  font-size: 1.05rem;
+}
