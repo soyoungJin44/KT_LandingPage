@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>오늘의 메모</title>
+	<style>
+		:root {
+			--ink: #20302d;
+			--muted: #71807b;
+			--paper: #fbfaf6;
+			--panel: #ffffff;
+			--line: #e4e8e2;
+			--mint: #b7e4d2;
+			--mint-deep: #2c7560;
+			--coral: #f28d73;
+			--shadow: 0 20px 50px rgba(44, 69, 60, .09);
+		}
+
+		* { box-sizing: border-box; }
+		body {
+			margin: 0;
+			color: var(--ink);
+			background: var(--paper);
+			font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+		}
+		button, input, textarea { font: inherit; }
+		button { cursor: pointer; }
+		.app {
+			min-height: 100vh;
+			background: radial-gradient(circle at 92% 0%, #e8f3e6 0, transparent 28rem), var(--paper);
+		}
+		.topbar {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			max-width: 1240px;
+			margin: 0 auto;
+			padding: 28px 32px 20px;
+		}
+		.brand { display: flex; align-items: center; gap: 12px; }
+		.brand-mark {
+			display: grid;
+			width: 38px;
+			height: 38px;
+			place-items: center;
+			color: #fff;
+			background: var(--ink);
+			border-radius: 12px 12px 12px 4px;
+			font-size: 20px;
+			transform: rotate(-4deg);
+		}
+		.brand strong { font-size: 18px; letter-spacing: -.04em; }
+		.brand small { display: block; margin-top: 3px; color: var(--muted); font-size: 11px; }
+		.date { color: var(--muted); font-size: 13px; }
+		main { max-width: 1240px; margin: 0 auto; padding: 38px 32px 70px; }
+		.welcome { display: flex; align-items: end; justify-content: space-between; margin-bottom: 34px; }
+		h1 { margin: 0; font-size: clamp(30px, 4vw, 48px); letter-spacing: -.07em; line-height: 1.1; }
+		.welcome p { margin: 13px 0 0; color: var(--muted); font-size: 15px; }
+		.new-button {
+			border: 0; border-radius: 14px; padding: 14px 19px; color: #fff;
+			background: var(--ink); box-shadow: 0 9px 18px rgba(32,48,45,.15); transition: transform .2s, background .2s;
+		}
+		.new-button:hover { background: var(--mint-deep); transform: translateY(-2px); }
+		.workspace { display: grid; grid-template-columns: 290px minmax(0, 1fr); gap: 26px; align-items: start; }
+		.sidebar, .editor { background: rgba(255,255,255,.76); border: 1px solid var(--line); box-shadow: var(--shadow); }
+		.sidebar { padding: 22px 18px; border-radius: 20px; }
+		.search { position: relative; margin-bottom: 24px; }
+		.search input { width: 100%; border: 1px solid var(--line); border-radius: 11px; padding: 12px 12px 12px 37px; outline: none; color: var(--ink); background: #fff; }
+		.search input:focus { border-color: var(--mint-deep); box-shadow: 0 0 0 3px rgba(183,228,210,.35); }
+		.search span { position: absolute; left: 13px; top: 10px; color: var(--muted); }
+		.section-label { display: flex; justify-content: space-between; margin: 0 7px 10px; color: var(--muted); font-size: 11px; font-weight: 700; letter-spacing: .1em; }
+		.note-list { display: grid; gap: 7px; }
+		.note-item { position: relative; display: block; width: 100%; padding: 12px 13px; text-align: left; border: 0; border-radius: 11px; color: var(--ink); background: transparent; }
+		.note-item:hover, .note-item.active { background: #edf7f0; }
+		.note-item.active { box-shadow: inset 3px 0 var(--mint-deep); }
+		.note-item strong { display: block; overflow: hidden; font-size: 14px; text-overflow: ellipsis; white-space: nowrap; }
+		.note-item small { display: block; overflow: hidden; margin-top: 5px; color: var(--muted); font-size: 11px; text-overflow: ellipsis; white-space: nowrap; }
+		.empty-list { padding: 25px 8px; color: var(--muted); text-align: center; font-size: 13px; }
+		.editor { min-height: 560px; padding: 28px 34px 26px; border-radius: 20px; }
+		.editor-head { display: flex; justify-content: space-between; align-items: center; padding-bottom: 23px; border-bottom: 1px solid var(--line); }
+		.editor-status { color: var(--muted); font-size: 12px; }
+		.icon-actions { display: flex; gap: 7px; }
+		.icon-button { display: grid; width: 34px; height: 34px; place-items: center; border: 1px solid var(--line); border-radius: 9px; color: var(--muted); background: #fff; }
+		.icon-button:hover { color: var(--ink); border-color: var(--mint-deep); }
+		.icon-button.pinned { color: var(--mint-deep); background: #edf7f0; }
+		.editor input, .editor textarea { display: block; width: 100%; border: 0; outline: 0; color: var(--ink); background: transparent; }
+		.editor input { margin: 33px 0 17px; font-size: 30px; font-weight: 700; letter-spacing: -.06em; }
+		.editor textarea { min-height: 340px; resize: vertical; line-height: 1.9; font-size: 15px; }
+		.editor textarea::placeholder, .editor input::placeholder { color: #b9c2bd; }
+		.editor-foot { display: flex; justify-content: space-between; align-items: center; padding-top: 17px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; }
+		.save-button { border: 0; border-radius: 10px; padding: 11px 17px; color: #fff; background: var(--mint-deep); }
+		.save-button:hover { background: #245d4e; }
+		.toast { position: fixed; right: 24px; bottom: 24px; padding: 12px 16px; color: #fff; border-radius: 10px; background: var(--ink); opacity: 0; transform: translateY(10px); transition: .25s; pointer-events: none; }
+		.toast.show { opacity: 1; transform: translateY(0); }
+		@media (max-width: 760px) {
+			.topbar { padding: 20px 18px 14px; }
+			.date { display: none; }
+			main { padding: 28px 18px 45px; }
+			.welcome { display: block; }
+			.welcome .new-button { margin-top: 22px; }
+			.workspace { grid-template-columns: 1fr; }
+			.sidebar { order: 2; }
+			.editor { min-height: 500px; padding: 22px 20px; }
+			.editor input { font-size: 25px; }
+		}
+	</style>
+</head>
+<body>
+	<div class="app">
+		<header class="topbar">
+			<div class="brand"><span class="brand-mark">✦</span><div><strong>오늘의 메모</strong><small>작은 생각을 오래 남기는 곳</small></div></div>
+			<div class="date" id="today"></div>
+		</header>
+		<main>
+			<section class="welcome">
+				<div><h1>생각을 적어두세요.</h1><p>지금 떠오른 문장을 놓치지 않도록.</p></div>
+				<button class="new-button" id="newNote">＋ 새 메모</button>
+			</section>
+			<section class="workspace">
+				<aside class="sidebar">
+					<label class="search"><span>⌕</span><input id="search" type="search" placeholder="메모 검색" aria-label="메모 검색"></label>
+					<div class="section-label"><span>내 메모</span><span id="noteCount">0개</span></div>
+					<div class="note-list" id="noteList"></div>
+				</aside>
+				<article class="editor">
+					<div class="editor-head"><span class="editor-status" id="editorStatus">새 메모</span><div class="icon-actions"><button class="icon-button" id="pinNote" title="메모 고정" aria-label="메모 고정">☆</button><button class="icon-button" id="deleteNote" title="메모 삭제" aria-label="메모 삭제">⌫</button></div></div>
+					<input id="noteTitle" placeholder="제목을 입력하세요" aria-label="메모 제목">
+					<textarea id="noteBody" placeholder="여기에 자유롭게 적어보세요..." aria-label="메모 내용"></textarea>
+					<div class="editor-foot"><span id="saveInfo">저장되지 않음</span><button class="save-button" id="saveNote">저장하기</button></div>
+				</article>
+			</section>
+		</main>
+		<div class="toast" id="toast">저장했습니다.</div>
+	</div>
+	<script>
+		const storageKey = "today-notes";
+		let notes = JSON.parse(localStorage.getItem(storageKey) || "[]");
+		let selectedId = null;
+
+		const $ = (id) => document.getElementById(id);
+		const title = $("noteTitle");
+		const body = $("noteBody");
+		const list = $("noteList");
+
+		function formatDate(value) {
+			return new Intl.DateTimeFormat("ko-KR", { month: "short", day: "numeric" }).format(new Date(value));
+		}
+		function persist() { localStorage.setItem(storageKey, JSON.stringify(notes)); }
+		function showToast(message) {
+			$("toast").textContent = message;
+			$("toast").classList.add("show");
+			setTimeout(() => $("toast").classList.remove("show"), 1800);
+		}
+		function renderList() {
+			const query = $("search").value.trim().toLowerCase();
+			const visible = notes.filter((note) => `${note.title} ${note.body}`.toLowerCase().includes(query)).sort((a, b) => Number(b.pinned) - Number(a.pinned) || b.updatedAt - a.updatedAt);
+			$("noteCount").textContent = `${notes.length}개`;
+			list.innerHTML = visible.length ? visible.map((note) => `<button class="note-item ${note.id === selectedId ? "active" : ""}" data-id="${note.id}"><strong>${escapeHtml(note.title || "제목 없음")}</strong><small>${formatDate(note.updatedAt)} · ${escapeHtml((note.body || "내용 없음").slice(0, 28))}</small></button>`).join("") : `<div class="empty-list">아직 메모가 없어요.<br>첫 생각을 적어보세요.</div>`;
+			list.querySelectorAll(".note-item").forEach((item) => item.addEventListener("click", () => selectNote(Number(item.dataset.id))));
+		}
+		function escapeHtml(value) { return value.replace(/[&<>'"]/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[char])); }
+		function selectNote(id) {
+			selectedId = id;
+			const note = notes.find((item) => item.id === id);
+			if (!note) return;
+			title.value = note.title; body.value = note.body;
+			$("editorStatus").textContent = `마지막 수정 ${formatDate(note.updatedAt)}`;
+			$("saveInfo").textContent = "자동 저장됨";
+			$("pinNote").classList.toggle("pinned", note.pinned);
+			$("pinNote").textContent = note.pinned ? "★" : "☆";
+			renderList();
+		}
+		function newNote() {
+			selectedId = null; title.value = ""; body.value = "";
+			$("editorStatus").textContent = "새 메모"; $("saveInfo").textContent = "저장되지 않음";
+			$("pinNote").classList.remove("pinned"); $("pinNote").textContent = "☆"; renderList(); title.focus();
+		}
+		$("saveNote").addEventListener("click", () => {
+			if (!title.value.trim() && !body.value.trim()) { showToast("내용을 먼저 입력해주세요."); title.focus(); return; }
+			const now = Date.now();
+			if (selectedId) { const note = notes.find((item) => item.id === selectedId); note.title = title.value.trim(); note.body = body.value.trim(); note.updatedAt = now; }
+			else { selectedId = now; notes.push({ id: selectedId, title: title.value.trim(), body: body.value.trim(), updatedAt: now, pinned: false }); }
+			persist(); selectNote(selectedId); showToast("저장했습니다.");
+		});
+		$("newNote").addEventListener("click", newNote);
+		$("search").addEventListener("input", renderList);
+		$("deleteNote").addEventListener("click", () => {
+			if (!selectedId) { showToast("삭제할 메모를 선택해주세요."); return; }
+			notes = notes.filter((note) => note.id !== selectedId); persist(); newNote(); showToast("메모를 삭제했습니다.");
+		});
+		$("pinNote").addEventListener("click", () => {
+			if (!selectedId) return;
+			const note = notes.find((item) => item.id === selectedId); note.pinned = !note.pinned; persist(); selectNote(selectedId); showToast(note.pinned ? "메모를 고정했습니다." : "고정을 해제했습니다.");
+		});
+		body.addEventListener("input", () => { if (selectedId) $("saveInfo").textContent = "변경사항 있음"; });
+		$("today").textContent = new Intl.DateTimeFormat("ko-KR", { year: "numeric", month: "long", day: "numeric", weekday: "long" }).format(new Date());
+		renderList();
+	</script>
+</body>
+</html>
