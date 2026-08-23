@@ -65,10 +65,18 @@ function HeroSection() {
               </h1>
 
               <p className="kt-desc">
-                수요가 급증하는 기술 분야에서 커리어를 가속화하세요. 생성형 AI, 사이버 보안, 클라우드
-                <br className="kt-desktop-break" />
+                수요가 급증하는 기술 분야에서 커리어를 가속화하세요.
+                <br />
+                <span className="kt-tech-highlight">
+                    생성형 AI
+                    <span className="kt-tech-divider">·</span>
+                    사이버 보안
+                    <span className="kt-tech-divider">·</span>
+                    클라우드 네이티브
+                </span>
+                <br />
                 네이티브 트랙 중 하나를 선택하여 인증된 전문가로 성장할 수 있습니다.
-              </p>
+                </p>
 
               <a className="kt-cta-btn" href="#consultation">지금 지원하기</a>
             </div>

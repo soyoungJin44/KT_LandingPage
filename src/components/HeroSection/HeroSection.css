@@ -77,3 +77,21 @@
 @media (prefers-reduced-motion: reduce) {
   .kt-hero-bg, .kt-hero-bg::before, .kt-hero-bg::after, .kt-hero-galaxy, .kt-hero-aurora, .kt-cta-btn { animation: none; }
 }
+.kt-tech-highlight {
+  display: inline-block;
+  margin: 10px 0;
+  color: #ffffff;
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.5;
+  text-shadow: 0 0 20px rgba(232, 67, 79, 0.25);
+}
+
+.kt-tech-divider {
+  display: inline-block;
+  margin: 0 12px;
+  color: var(--kt-red);
+  font-size: 18px;
+  font-weight: 800;
+}

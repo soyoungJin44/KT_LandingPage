@@ -104,4 +104,12 @@
     width: 100%;
     text-align: center;
   }
+  .kt-footer-logo {
+  color: var(--kt-text-white);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+
 }

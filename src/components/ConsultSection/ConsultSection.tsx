@@ -40,6 +40,18 @@ function ConsultFormCard({ config }: { config: ConsultFormConfig }) {
     setSelected((prev) => (prev.includes(opt) ? prev.filter((o) => o !== opt) : [...prev, opt]));
   };
 
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const name = form.elements.namedItem(`${config.id}-name`) as HTMLInputElement;
+    const phone = form.elements.namedItem(`${config.id}-phone`) as HTMLInputElement;
+    const region = form.elements.namedItem(`${config.id}-region`) as HTMLInputElement;
+
+    if (selected.length === 0 || !name.value.trim() || !phone.value.trim() || !region.value.trim()) {
+      window.alert("필수 항목을 모두 입력해 주세요.");
+    }
+  };
+
   return (
     <form
       className="kt-consult-card"
@@ -49,9 +61,16 @@ function ConsultFormCard({ config }: { config: ConsultFormConfig }) {
           "--kt-consult-accent-dark": config.accentDark,
         } as React.CSSProperties
       }
-      onSubmit={(e) => e.preventDefault()}
+      onSubmit={handleSubmit}
     >
-      <h3 className="kt-consult-card-title">무료 상담 신청</h3>
+      <h3 className="kt-consult-card-title">
+  {config.id === "course" ? "교육과정 상담 신청" : "지원제도 상담 신청"}
+</h3>
+<p className="kt-consult-card-desc">
+  {config.id === "course"
+    ? "원하는 교육과정을 선택하고 맞춤형 상담을 받아보세요!"
+    : "현재 받을 수 있는 지원제도를 확인하고 상담받아보세요!"}
+</p>
 
       <div className="kt-consult-field">
         <div className="kt-consult-label-row">
@@ -76,27 +95,29 @@ function ConsultFormCard({ config }: { config: ConsultFormConfig }) {
 
       <div className="kt-consult-field">
         <label className="kt-consult-label" htmlFor={`${config.id}-name`}>
-          이름
+          이름 <span className="kt-consult-required">*</span>
         </label>
-        <input id={`${config.id}-name`} className="kt-consult-input" type="text" placeholder="홍길동" />
+        <input id={`${config.id}-name`} name={`${config.id}-name`} className="kt-consult-input" type="text" placeholder="홍길동" aria-required="true" />
       </div>
 
       <div className="kt-consult-field">
         <label className="kt-consult-label" htmlFor={`${config.id}-phone`}>
-          번호
+          번호 <span className="kt-consult-required">*</span>
         </label>
-        <input id={`${config.id}-phone`} className="kt-consult-input" type="tel" placeholder="010-0000-0000" />
+        <input id={`${config.id}-phone`} name={`${config.id}-phone`} className="kt-consult-input" type="tel" placeholder="010-0000-0000" aria-required="true" />
       </div>
 
       <div className="kt-consult-field">
         <label className="kt-consult-label" htmlFor={`${config.id}-region`}>
-          지역
+          지역 <span className="kt-consult-required">*</span>
         </label>
         <input
           id={`${config.id}-region`}
+          name={`${config.id}-region`}
           className="kt-consult-input"
           type="text"
           placeholder="예) 서울시 강남구"
+          aria-required="true"
         />
       </div>
 
