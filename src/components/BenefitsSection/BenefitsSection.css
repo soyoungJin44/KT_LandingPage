@@ -3,6 +3,10 @@
   --kt-benefit-card-border: rgba(255, 255, 255, 0.06);
   --kt-benefit-icon-pink: #ef8b93;
   --kt-benefit-icon-blue: #5b9bf5;
+  --kt-benefit-accent-one: #ef8b93;
+  --kt-benefit-accent-two: #5b9bf5;
+  --kt-benefit-accent-three: #55c7b3;
+  --kt-benefit-accent-four: #f0a36b;
 }
 
 .kt-benefits { background: var(--kt-bg-page); color: var(--kt-text-white); font-family: var(--kt-font); padding: 72px 24px 96px; }
@@ -20,6 +24,18 @@
 .kt-benefit-card-active { border-color: var(--kt-red); background: linear-gradient(180deg, rgba(232,67,79,.14) 0%, rgba(20,12,14,.4) 100%); box-shadow: 0 0 0 1px rgba(232,67,79,.25), 0 0 40px -10px rgba(232,67,79,.55); }
 .kt-benefit-card-active .kt-benefit-icon { background: rgba(232,67,79,.12); color: var(--kt-red); }
 .kt-benefit-card-active .kt-benefit-desc { color: var(--kt-text-gray-soft); }
+.kt-benefit-card:nth-child(1) { border-color: var(--kt-benefit-accent-one); background: linear-gradient(180deg, rgba(239,139,147,.14), rgba(20,12,14,.4)); box-shadow: 0 0 0 1px rgba(239,139,147,.18), 0 0 32px -12px rgba(239,139,147,.45); }
+.kt-benefit-card:nth-child(2) { border-color: var(--kt-benefit-accent-two); background: linear-gradient(180deg, rgba(91,155,245,.14), rgba(12,17,25,.4)); box-shadow: 0 0 0 1px rgba(91,155,245,.18), 0 0 32px -12px rgba(91,155,245,.45); }
+.kt-benefit-card:nth-child(3) { border-color: var(--kt-benefit-accent-three); background: linear-gradient(180deg, rgba(85,199,179,.14), rgba(12,22,22,.4)); box-shadow: 0 0 0 1px rgba(85,199,179,.18), 0 0 32px -12px rgba(85,199,179,.45); }
+.kt-benefit-card:nth-child(4) { border-color: var(--kt-benefit-accent-four); background: linear-gradient(180deg, rgba(240,163,107,.14), rgba(25,17,12,.4)); box-shadow: 0 0 0 1px rgba(240,163,107,.18), 0 0 32px -12px rgba(240,163,107,.45); }
+.kt-benefit-card:nth-child(1) .kt-benefit-icon { background: rgba(239,139,147,.12); color: var(--kt-benefit-accent-one); }
+.kt-benefit-card:nth-child(2) .kt-benefit-icon { background: rgba(91,155,245,.12); color: var(--kt-benefit-accent-two); }
+.kt-benefit-card:nth-child(3) .kt-benefit-icon { background: rgba(85,199,179,.12); color: var(--kt-benefit-accent-three); }
+.kt-benefit-card:nth-child(4) .kt-benefit-icon { background: rgba(240,163,107,.12); color: var(--kt-benefit-accent-four); }
+.kt-benefit-card:nth-child(1):hover { border-color: var(--kt-benefit-accent-one); }
+.kt-benefit-card:nth-child(2):hover { border-color: var(--kt-benefit-accent-two); }
+.kt-benefit-card:nth-child(3):hover { border-color: var(--kt-benefit-accent-three); }
+.kt-benefit-card:nth-child(4):hover { border-color: var(--kt-benefit-accent-four); }
 
 @media (max-width: 900px) { .kt-benefits-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 520px) { .kt-benefits { padding: 64px 18px 80px; } .kt-benefits-grid { grid-template-columns: 1fr; } }
