@@ -1,0 +1,264 @@
+/* =========================================================
+   kt cloud TECH UP – Consult Section (무료 상담 신청 폼 2개)
+   기존 --kt-* 토큰 재사용. 폼 전용 값만 추가.
+   ========================================================= */
+
+:root {
+  --kt-bg-page: #0b0913;
+  --kt-red: #e8434f;
+  --kt-red-dark: #c32d3a;
+  --kt-text-white: #f5f2f6;
+  --kt-text-gray: #b7aebd;
+  --kt-text-gray-soft: #cfc7d6;
+  --kt-font: "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", -apple-system,
+    BlinkMacSystemFont, sans-serif;
+
+  --kt-consult-card-bg: #151119;
+  --kt-consult-card-border: rgba(255, 255, 255, 0.06);
+  --kt-consult-field-bg: #1d1824;
+  --kt-consult-field-border: rgba(255, 255, 255, 0.08);
+  --kt-consult-placeholder: #736c7d;
+}
+
+.kt-consult {
+  background: var(--kt-bg-page);
+  font-family: var(--kt-font);
+  padding: 72px 24px 90px;
+}
+
+.kt-consult * {
+  box-sizing: border-box;
+}
+
+.kt-consult-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.kt-consult-divider {
+  width: 56px;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--kt-red), #ff8a90);
+  margin: 0 auto 24px;
+}
+
+.kt-consult-eyebrow {
+  text-align: center;
+  color: var(--kt-red);
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  margin: 0 0 12px;
+}
+
+.kt-consult-title {
+  text-align: center;
+  color: var(--kt-text-white);
+  font-size: clamp(20px, 3vw, 26px);
+  font-weight: 800;
+  margin: 0 0 10px;
+  letter-spacing: -0.01em;
+}
+
+.kt-consult-subtitle {
+  text-align: center;
+  color: var(--kt-text-gray);
+  font-size: 13.5px;
+  margin: 0 0 36px;
+}
+
+.kt-consult-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+/* ---------------- 카드 ---------------- */
+
+.kt-consult-card {
+  background: var(--kt-consult-card-bg);
+  border: 1px solid var(--kt-consult-card-border);
+  border-radius: 16px;
+  padding: 32px 28px 28px;
+  display: flex;
+  flex-direction: column;
+}
+
+.kt-consult-card-title {
+  color: var(--kt-text-white);
+  font-size: 18px;
+  font-weight: 800;
+  margin: 0 0 24px;
+}
+
+.kt-consult-field {
+  margin-bottom: 20px;
+}
+
+.kt-consult-label-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.kt-consult-label {
+  display: block;
+  color: var(--kt-text-gray-soft);
+  font-size: 12.5px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.kt-consult-label-row .kt-consult-label {
+  margin-bottom: 0;
+}
+
+.kt-consult-required {
+  color: var(--kt-consult-accent);
+}
+
+.kt-consult-hint {
+  color: var(--kt-consult-placeholder);
+  font-size: 11px;
+}
+
+/* ---------------- 선택 pill ---------------- */
+
+.kt-consult-pills {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.kt-consult-pill {
+  background: var(--kt-consult-field-bg);
+  border: 1px solid var(--kt-consult-field-border);
+  color: var(--kt-text-gray-soft);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 14px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.kt-consult-pill:hover {
+  border-color: color-mix(in srgb, var(--kt-consult-accent) 40%, transparent);
+}
+
+.kt-consult-pill-active {
+  background: color-mix(in srgb, var(--kt-consult-accent) 12%, transparent);
+  border-color: var(--kt-consult-accent);
+  color: #ffffff;
+}
+
+/* ---------------- input / select / textarea ---------------- */
+
+.kt-consult-input,
+.kt-consult-textarea {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid var(--kt-consult-field-border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 13px;
+  font-family: inherit;
+  color: #201c2b;
+}
+
+.kt-consult-input::placeholder,
+.kt-consult-textarea::placeholder {
+  color: #9a95a3;
+}
+
+.kt-consult-textarea {
+  min-height: 78px;
+  resize: vertical;
+  background: var(--kt-consult-field-bg);
+  color: var(--kt-text-gray-soft);
+  border-color: var(--kt-consult-field-border);
+}
+
+.kt-consult-textarea::placeholder {
+  color: var(--kt-consult-placeholder);
+}
+
+/* ---------------- radio ---------------- */
+
+.kt-consult-radio-row {
+  display: flex;
+  gap: 22px;
+}
+
+.kt-consult-radio {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--kt-text-gray-soft);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.kt-consult-radio input {
+  display: none;
+}
+
+.kt-consult-radio-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1.6px solid #736c7d;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.kt-consult-radio input:checked + .kt-consult-radio-dot {
+  border-color: var(--kt-consult-accent);
+}
+
+.kt-consult-radio input:checked + .kt-consult-radio-dot::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--kt-consult-accent);
+}
+
+/* ---------------- 제출 버튼 ---------------- */
+
+.kt-consult-submit {
+  margin-top: 4px;
+  border: none;
+  background: linear-gradient(180deg, var(--kt-consult-accent) 0%, var(--kt-consult-accent-dark) 100%);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.kt-consult-submit:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px -10px color-mix(in srgb, var(--kt-consult-accent) 60%, transparent);
+}
+
+/* ---------------- 반응형 ---------------- */
+
+@media (max-width: 760px) {
+  .kt-consult-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 420px) {
+  .kt-consult-pills {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,24 @@
+.kt-recommend {
+  background: var(--kt-bg-page);
+  color: var(--kt-text-white);
+  font-family: var(--kt-font);
+  padding: 80px 24px 96px;
+}
+
+.kt-recommend * { box-sizing: border-box; }
+.kt-recommend-inner { max-width: 1000px; margin: 0 auto; }
+.kt-recommend-heading { display: flex; margin-bottom: 52px; align-items: center; justify-content: center; gap: 20px; }
+.kt-recommend-line { width: 48px; height: 1px; background: linear-gradient(90deg, transparent, var(--kt-red)); }
+.kt-recommend-heading .kt-recommend-line:last-child { background: linear-gradient(90deg, var(--kt-red), transparent); }
+.kt-recommend-title { margin: 0; color: var(--kt-text-white); font-size: clamp(20px, 3vw, 26px); font-weight: 800; letter-spacing: -.01em; white-space: nowrap; }
+.kt-recommend-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+.kt-recommend-col-title { margin: 0 0 22px; color: var(--kt-text-white); font-size: 16px; font-weight: 700; text-align: center; }
+.kt-recommend-list { display: flex; flex-direction: column; gap: 16px; margin: 0; padding: 0; list-style: none; }
+.kt-recommend-list li { position: relative; padding-left: 14px; color: var(--kt-text-gray); font-size: 13px; line-height: 1.6; }
+.kt-recommend-list li::before { position: absolute; top: 7px; left: 0; width: 4px; height: 4px; border-radius: 50%; background: var(--kt-red); content: ''; }
+
+@media (max-width: 760px) {
+  .kt-recommend { padding: 64px 18px 80px; }
+  .kt-recommend-grid { grid-template-columns: 1fr; gap: 32px; }
+  .kt-recommend-title { white-space: normal; text-align: center; }
+}

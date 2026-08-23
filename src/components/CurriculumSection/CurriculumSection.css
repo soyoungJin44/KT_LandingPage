@@ -1,0 +1,455 @@
+/* =========================================================
+   kt cloud TECH UP – Curriculum Section (병합)
+   Image 1 (트랙 탭, .kt-track / .kt-tab / .kt-panel...)
+   Image 2 (단계별 커리큘럼, .kt-curr...)
+   두 섹션을 한 컴포넌트/한 CSS 파일로 합쳤습니다.
+   공통 토큰(--kt-bg-page, --kt-text-* 등)은 한 번만 선언했고,
+   섹션별 강조색은 각자 다르게 유지했습니다.
+   - 트랙 섹션 강조색: --kt-red (기존 그대로, red 계열)
+   - 커리큘럼 단계 섹션 강조색: --kt-accent (purple 계열)
+   ========================================================= */
+
+:root {
+  /* 공통 토큰 */
+  --kt-bg-page: #0b0913;
+  --kt-text-white: #f5f2f6;
+  --kt-text-gray: #b7aebd;
+  --kt-text-gray-soft: #cfc7d6;
+  --kt-font: "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", -apple-system,
+    BlinkMacSystemFont, sans-serif;
+
+  /* 트랙 섹션 전용 (red) */
+  --kt-red: #e8434f;
+  --kt-red-dark: #c32d3a;
+  --kt-panel-bg: #161119;
+  --kt-panel-border: rgba(255, 255, 255, 0.06);
+  --kt-stack-card-bg: #1c1c1c;
+  --kt-pill-bg: #2b2b2b;
+  --kt-pill-border: rgba(255, 255, 255, 0.06);
+  --kt-tab-inactive: #8b8591;
+
+  /* 커리큘럼 단계 섹션 전용 (purple) */
+  --kt-accent: #7c5cfa;
+  --kt-accent-dark: #5f3fe0;
+  --kt-accent-soft: #efeaff;
+  --kt-curr-card-bg: #171320;
+  --kt-curr-card-border: rgba(255, 255, 255, 0.06);
+  --kt-curr-item-bg: #211c2c;
+  --kt-curr-item-text: #cfc7d6;
+  --kt-curr-panel-bg: #ffffff;
+  --kt-curr-row-bg: #f0f3f9;
+  --kt-curr-row-text: #3a3a45;
+}
+
+/* =========================================================
+   Image 1 — 트랙 탭 섹션 (.kt-track)
+   ========================================================= */
+
+.kt-track {
+  background: var(--kt-bg-page);
+  font-family: var(--kt-font);
+  padding: 80px 24px 100px;
+}
+
+.kt-track * {
+  box-sizing: border-box;
+}
+
+.kt-track-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.kt-track-title {
+  text-align: center;
+  color: var(--kt-text-white);
+  font-size: clamp(22px, 3vw, 28px);
+  font-weight: 800;
+  margin: 0 0 12px;
+  letter-spacing: -0.01em;
+}
+
+.kt-track-subtitle {
+  text-align: center;
+  color: var(--kt-text-gray);
+  font-size: 14px;
+  margin: 0 0 36px;
+}
+
+.kt-tabs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 16px;
+  margin-bottom: 32px;
+}
+
+.kt-tab {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--kt-tab-inactive);
+  padding: 4px 2px;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.kt-tab:hover {
+  color: var(--kt-text-gray-soft);
+}
+
+.kt-tab-active {
+  color: var(--kt-text-white);
+  font-weight: 700;
+}
+
+.kt-tab-active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -17px;
+  height: 2px;
+  background: var(--kt-tab-accent, var(--kt-red));
+}
+
+.kt-panel {
+  background: var(--kt-panel-bg);
+  border: 1px solid var(--kt-panel-border);
+  border-radius: 16px;
+  padding: 40px;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 40px;
+}
+
+.kt-panel-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.kt-overview-label {
+  color: var(--kt-track-accent, var(--kt-red));
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  margin-bottom: 14px;
+}
+
+.kt-panel-title {
+  color: var(--kt-text-white);
+  font-size: 24px;
+  font-weight: 800;
+  margin: 0 0 16px;
+  letter-spacing: -0.01em;
+}
+
+.kt-panel-desc {
+  color: var(--kt-text-gray);
+  font-size: 13.5px;
+  line-height: 1.75;
+  margin: 0 0 28px;
+}
+
+.kt-checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.kt-checklist li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--kt-text-gray-soft);
+  font-size: 13.5px;
+  font-weight: 500;
+}
+
+.kt-check-icon {
+  color: var(--kt-track-accent, var(--kt-red));
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.kt-panel-right {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.kt-stack-card,
+.kt-roles-card {
+  background: var(--kt-stack-card-bg);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 28px;
+  width: 100%;
+}
+
+.kt-stack-title,
+.kt-roles-title {
+  color: var(--kt-text-white);
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0 0 20px;
+}
+
+.kt-stack-pills,
+.kt-roles-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.kt-pill {
+  background: var(--kt-pill-bg);
+  border: 1px solid var(--kt-pill-border);
+  color: var(--kt-text-gray-soft);
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 9px 16px;
+  border-radius: 8px;
+  white-space: nowrap;
+  transition: border-color 0.2s ease;
+}
+
+.kt-panel:hover .kt-pill,
+.kt-pill {
+  border-color: color-mix(in srgb, var(--kt-track-accent, var(--kt-red)) 30%, var(--kt-pill-border));
+}
+
+.kt-roles-pill {
+  background: transparent;
+  border: 1px solid var(--kt-track-accent, var(--kt-red));
+  color: var(--kt-track-accent, var(--kt-red));
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 9px 16px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+@media (max-width: 760px) {
+  .kt-panel {
+    grid-template-columns: 1fr;
+    padding: 28px 22px;
+  }
+
+  .kt-tabs {
+    gap: 20px;
+  }
+
+  .kt-tab {
+    font-size: 13.5px;
+  }
+}
+
+/* =========================================================
+   Image 2 — 단계별 커리큘럼 섹션 (.kt-curr)
+   ========================================================= */
+
+.kt-curr {
+  background: var(--kt-bg-page);
+  font-family: var(--kt-font);
+  padding: 0 24px 100px;
+}
+
+.kt-curr * {
+  box-sizing: border-box;
+}
+
+.kt-curr-card {
+  max-width: 900px;
+  margin: 0 auto;
+  background: var(--kt-curr-card-bg);
+  border: 1px solid var(--kt-curr-card-border);
+  border-radius: 24px;
+  padding: 48px 44px 52px;
+}
+
+.kt-curr-header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.kt-curr-eyebrow {
+  color: var(--kt-accent);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  margin: 0 0 10px;
+}
+
+.kt-curr-title {
+  color: var(--kt-text-white);
+  font-size: clamp(20px, 3vw, 26px);
+  line-height: 1.4;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.kt-curr-body {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.kt-curr-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.kt-curr-list-item {
+  text-align: left;
+  background: var(--kt-curr-item-bg);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 12px 16px;
+  cursor: pointer;
+  font-family: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.kt-curr-list-item:hover {
+  background: #2a2436;
+}
+
+.kt-curr-list-step {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--kt-text-gray);
+  letter-spacing: 0.04em;
+}
+
+.kt-curr-list-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--kt-curr-item-text);
+}
+
+.kt-curr-list-item-active {
+  background: linear-gradient(135deg, var(--kt-accent) 0%, var(--kt-accent-dark) 100%);
+  border-color: transparent;
+  box-shadow: 0 10px 24px -10px rgba(124, 92, 250, 0.6);
+}
+
+.kt-curr-list-item-active .kt-curr-list-step,
+.kt-curr-list-item-active .kt-curr-list-title {
+  color: #ffffff;
+}
+
+.kt-curr-panel {
+  background: var(--kt-curr-panel-bg);
+  border-radius: 16px;
+  padding: 28px 26px 30px;
+}
+
+.kt-curr-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--kt-accent) 0%, var(--kt-accent-dark) 100%);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 5px 12px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+
+.kt-curr-panel-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: #201c2b;
+  margin: 0 0 18px;
+}
+
+.kt-curr-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #6b6675;
+  margin-bottom: 12px;
+}
+
+.kt-curr-checkbox {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  border: 1.6px solid #b9b3c6;
+  display: inline-block;
+}
+
+.kt-curr-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.kt-curr-accordion-row {
+  background: var(--kt-curr-row-bg);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.kt-curr-accordion-head {
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--kt-curr-row-text);
+}
+
+.kt-curr-chevron {
+  color: #8b8596;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.kt-curr-chevron-open {
+  transform: rotate(180deg);
+  color: var(--kt-accent);
+}
+
+.kt-curr-accordion-row-open {
+  background: color-mix(in srgb, var(--kt-accent) 12%, #f0f3f9);
+}
+
+.kt-curr-accordion-body {
+  padding: 0 14px 14px 26px;
+  font-size: 12px;
+  color: #6b6675;
+  line-height: 1.6;
+}
+
+@media (max-width: 760px) {
+  .kt-curr-card {
+    padding: 32px 20px 36px;
+  }
+
+  .kt-curr-body {
+    grid-template-columns: 1fr;
+  }
+}

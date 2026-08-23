@@ -1,0 +1,25 @@
+:root {
+  --kt-benefit-card-bg: #131116;
+  --kt-benefit-card-border: rgba(255, 255, 255, 0.06);
+  --kt-benefit-icon-pink: #ef8b93;
+  --kt-benefit-icon-blue: #5b9bf5;
+}
+
+.kt-benefits { background: var(--kt-bg-page); color: var(--kt-text-white); font-family: var(--kt-font); padding: 72px 24px 96px; }
+.kt-benefits * { box-sizing: border-box; }
+.kt-benefits-inner { max-width: 1100px; margin: 0 auto; }
+.kt-benefits-title { margin: 0 0 12px; color: var(--kt-text-white); font-size: clamp(22px, 3vw, 28px); font-weight: 800; letter-spacing: -.01em; text-align: center; }
+.kt-benefits-subtitle { margin: 0 0 40px; color: var(--kt-text-gray); font-size: 14px; text-align: center; }
+.kt-benefits-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.kt-benefit-card { padding: 32px 20px 28px; border: 1px solid var(--kt-benefit-card-border); border-radius: 14px; background: var(--kt-benefit-card-bg); text-align: center; transition: transform .2s ease, border-color .2s ease; }
+.kt-benefit-card:hover { border-color: var(--kt-red); transform: translateY(-3px); }
+.kt-benefit-icon { display: flex; width: 56px; height: 56px; margin: 0 auto 18px; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,.04); color: var(--kt-benefit-icon-pink); }
+.kt-benefit-card:nth-child(2) .kt-benefit-icon, .kt-benefit-card:nth-child(3) .kt-benefit-icon { color: var(--kt-benefit-icon-blue); }
+.kt-benefit-title { margin: 0 0 12px; color: var(--kt-text-white); font-size: 15px; font-weight: 700; }
+.kt-benefit-desc { margin: 0; color: var(--kt-text-gray); font-size: 12.5px; line-height: 1.65; }
+.kt-benefit-card-active { border-color: var(--kt-red); background: linear-gradient(180deg, rgba(232,67,79,.14) 0%, rgba(20,12,14,.4) 100%); box-shadow: 0 0 0 1px rgba(232,67,79,.25), 0 0 40px -10px rgba(232,67,79,.55); }
+.kt-benefit-card-active .kt-benefit-icon { background: rgba(232,67,79,.12); color: var(--kt-red); }
+.kt-benefit-card-active .kt-benefit-desc { color: var(--kt-text-gray-soft); }
+
+@media (max-width: 900px) { .kt-benefits-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .kt-benefits { padding: 64px 18px 80px; } .kt-benefits-grid { grid-template-columns: 1fr; } }
