@@ -10,10 +10,10 @@ interface Benefit {
 }
 
 const BENEFITS: Benefit[] = [
-  { id: 'tuition', title: '교육비 전액 무료', description: '약 18,566,400원 상당의 프리미엄\n교육 전액 국비 지원\n(내일배움카드 필요)', icon: 'wallet' },
+  { id: 'tuition', title: '교육비 최대 100%지원', description: '최대 18,566,400원 상당의 프리미엄\n교육 국비 지원\n(내일배움카드 필요)', icon: 'wallet' },
   { id: 'allowance', title: '매월 훈련장려금', description: '학습에 몰입할 수 있도록 매월 최대\n30만원 이상의 훈련장려금 지급', icon: 'piggy' },
-  { id: 'mentoring', title: '현업 전문가 멘토링', description: 'kt cloud 및 업계 최고 수준의 실무\n진들이 직접 참여하는 밀착 멘토링', icon: 'cap' },
-  { id: 'facility', title: '장비 및 학습 공간', description: '최신형 노트북 대여 및 강남/메타버\n스 캠퍼 등 최적의 학습 환경 제공', icon: 'laptop', highlighted: true },
+  { id: 'mentoring', title: '현직자 기반 실무 피드백', description: 'kt cloud 현직자 및 실무진이 프로젝트\n피드백과 멘토링에 참여합니다.\n실무 관점에서 문제를 분석하고 개선하는 경험을 제공', icon: 'cap' },
+  { id: 'facility', title: '학습 환경 지원', description: '노트북 대여 및 웹캠\n등 최적의 학습 환경 제공', icon: 'laptop', highlighted: true },
 ]
 
 type BenefitIconProps = SVGProps<SVGSVGElement> & { type: Benefit['icon'] }
@@ -40,7 +40,7 @@ function BenefitsSection() {
   return (
     <section className="kt-benefits" aria-labelledby="kt-benefits-title">
       <div className="kt-benefits-inner">
-        <h2 className="kt-benefits-title" id="kt-benefits-title">전문적인 지원과 압도적 혜택</h2>
+        <h2 className="kt-benefits-title" id="kt-benefits-title">목표를 현실로 만드는 압도적 혜택</h2>
         <p className="kt-benefits-subtitle">오직 성장에만 집중할 수 있도록 kt cloud가 완벽하게 지원합니다.</p>
         <div className="kt-benefits-grid">
           {BENEFITS.map((benefit) => (
