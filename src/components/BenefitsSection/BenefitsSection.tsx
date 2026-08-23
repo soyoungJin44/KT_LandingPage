@@ -38,7 +38,7 @@ function BenefitIcon({ type, ...props }: BenefitIconProps) {
 
 function BenefitsSection() {
   return (
-    <section className="kt-benefits" aria-labelledby="kt-benefits-title">
+    <section className="kt-benefits" id="support" aria-labelledby="kt-benefits-title">
       <div className="kt-benefits-inner">
         <h2 className="kt-benefits-title" id="kt-benefits-title">목표를 현실로 만드는 압도적 혜택</h2>
         <p className="kt-benefits-subtitle">오직 성장에만 집중할 수 있도록 kt cloud가 완벽하게 지원합니다.</p>

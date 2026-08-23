@@ -142,7 +142,7 @@ function ConsultFormCard({ config }: { config: ConsultFormConfig }) {
 
 export default function ConsultSection() {
   return (
-    <section className="kt-consult">
+    <section className="kt-consult" id="consultation">
       <div className="kt-consult-inner">
         <div className="kt-consult-divider" aria-hidden="true" />
         <p className="kt-consult-eyebrow">FREE CONSULTATION</p>

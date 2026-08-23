@@ -1,8 +1,10 @@
 .kt-recommend {
-  background: var(--kt-bg-page);
+  background: linear-gradient(110deg, rgba(25, 19, 43, .94), rgba(17, 20, 37, .82));
   color: var(--kt-text-white);
   font-family: var(--kt-font);
   padding: 80px 24px 96px;
+  border-top: 1px solid rgba(167, 124, 255, .12);
+  border-bottom: 1px solid rgba(167, 124, 255, .12);
 }
 
 .kt-recommend * { box-sizing: border-box; }

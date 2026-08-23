@@ -1,0 +1,43 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="space" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0A0814"/>
+      <stop offset="0.46" stop-color="#17102C"/>
+      <stop offset="1" stop-color="#090A18"/>
+    </linearGradient>
+    <radialGradient id="violet" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1050 260) rotate(100) scale(460 760)">
+      <stop stop-color="#A65BE8" stop-opacity="0.62"/>
+      <stop offset="0.58" stop-color="#713AAB" stop-opacity="0.2"/>
+      <stop offset="1" stop-color="#713AAB" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="cyan" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(350 570) rotate(-15) scale(310 600)">
+      <stop stop-color="#3DB9D5" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="#3DB9D5" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="aurora" x1="130" y1="640" x2="1450" y2="130" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3FE0D0" stop-opacity="0"/>
+      <stop offset="0.3" stop-color="#47D9C8" stop-opacity="0.32"/>
+      <stop offset="0.53" stop-color="#A77CFF" stop-opacity="0.55"/>
+      <stop offset="0.74" stop-color="#F16BA9" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="#F16BA9" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="blur-aurora" x="-20%" y="-40%" width="140%" height="180%">
+      <feGaussianBlur stdDeviation="34"/>
+    </filter>
+    <filter id="blur-cloud" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="70"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#space)"/>
+  <rect width="1600" height="900" fill="url(#violet)"/>
+  <rect width="1600" height="900" fill="url(#cyan)"/>
+  <ellipse cx="900" cy="370" rx="650" ry="125" transform="rotate(-18 900 370)" fill="url(#aurora)" filter="url(#blur-aurora)"/>
+  <ellipse cx="730" cy="450" rx="500" ry="55" transform="rotate(-18 730 450)" fill="#E8A6FF" fill-opacity="0.12" filter="url(#blur-cloud)"/>
+  <g fill="#FFF8FF">
+    <circle cx="104" cy="112" r="2"/><circle cx="245" cy="210" r="1.5"/><circle cx="390" cy="88" r="1.5"/><circle cx="536" cy="264" r="2"/><circle cx="710" cy="125" r="1.5"/><circle cx="842" cy="72" r="1.5"/><circle cx="1010" cy="168" r="2"/><circle cx="1215" cy="96" r="1.5"/><circle cx="1432" cy="228" r="2"/><circle cx="1520" cy="108" r="1.5"/>
+    <circle cx="180" cy="480" r="1.5"/><circle cx="330" cy="700" r="2"/><circle cx="490" cy="560" r="1.5"/><circle cx="630" cy="790" r="1.5"/><circle cx="790" cy="630" r="2"/><circle cx="970" cy="760" r="1.5"/><circle cx="1120" cy="560" r="1.5"/><circle cx="1305" cy="690" r="2"/><circle cx="1480" cy="520" r="1.5"/>
+  </g>
+  <g fill="#A9E9FF" fill-opacity="0.8">
+    <circle cx="72" cy="340" r="1"/><circle cx="455" cy="390" r="1"/><circle cx="1160" cy="360" r="1"/><circle cx="1370" cy="420" r="1"/><circle cx="1550" cy="780" r="1"/>
+  </g>
+</svg>

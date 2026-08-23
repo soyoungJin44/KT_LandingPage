@@ -33,13 +33,20 @@ function HeroSection() {
           <a className="kt-logo" href="#hero" aria-label="kt cloud TECH UP 홈">
             <span>kt</span> cloud TECH UP
           </a>
-          <a className="kt-nav-btn" href="#apply">지원하기</a>
+          <nav className="kt-nav-links" aria-label="주요 섹션">
+            <a href="#courses">과정 찾기</a>
+            <a href="#support">교육 혜택</a>
+            <a href="#faq">FAQ</a>
+            <a href="#consultation">상담 신청</a>
+          </nav>
         </div>
       </header>
 
       <main>
         <section className="kt-hero" id="hero">
           <div className="kt-hero-bg" aria-hidden="true" />
+          <div className="kt-hero-galaxy" aria-hidden="true" />
+          <div className="kt-hero-aurora" aria-hidden="true" />
           <div className="kt-hero-overlay" aria-hidden="true" />
 
           <div className="kt-hero-content">
@@ -63,7 +70,7 @@ function HeroSection() {
                 네이티브 트랙 중 하나를 선택하여 인증된 전문가로 성장할 수 있습니다.
               </p>
 
-              <a className="kt-cta-btn" href="#apply">지금 지원하기</a>
+              <a className="kt-cta-btn" href="#consultation">지금 지원하기</a>
             </div>
           </div>
         </section>
@@ -86,7 +93,8 @@ function HeroSection() {
             <div className="kt-info-item">
               <DeviceIcon className="kt-icon kt-icon-blue" />
               <h2 className="kt-info-title">교육 방법</h2>
-              <p className="kt-info-value kt-info-link">온라인 / 비대면 실시간</p>
+              <p className="kt-info-value kt-info-link">100% 온라인</p>
+              <p className="kt-info-sub">*PC등 장비지원</p>
             </div>
           </div>
         </section>

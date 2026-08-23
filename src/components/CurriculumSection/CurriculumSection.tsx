@@ -615,7 +615,7 @@ export default function CurriculumSection() {
       <ConsultSection />
 
       {/* ===== Image 1: 트랙 선택 ===== */}
-      <section className="kt-track">
+      <section className="kt-track" id="courses">
         <div className="kt-track-inner">
           <h2 className="kt-track-title">당신의 미래를 위한 3가지 트랙</h2>
           <p className="kt-track-subtitle">관심 있는 트랙을 선택하여 상세 커리큘럼을 확인하세요.</p>
@@ -690,7 +690,7 @@ export default function CurriculumSection() {
       </section>
 
       {/* ===== Image 2: 단계별 커리큘럼 ===== */}
-      <section className="kt-curr">
+      <section className="kt-curr" id="project">
         <div
           className="kt-curr-card"
           style={
