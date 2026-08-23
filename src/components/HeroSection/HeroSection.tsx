@@ -75,7 +75,7 @@ function HeroSection() {
                     클라우드 네이티브
                 </span>
                 <br />
-                네이티브 트랙 중 하나를 선택하여 인증된 전문가로 성장할 수 있습니다.
+                트랙 중 하나를 선택하여 인증된 전문가로 성장할 수 있습니다.
                 </p>
 
               <a className="kt-cta-btn" href="#consultation">지금 지원하기</a>
