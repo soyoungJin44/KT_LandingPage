@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./ConsultSection.css";
 
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzUrmDm4-KTtPYOPRV8dl4ahtYE86c3TL0dEGSomEkUmrPb1n4p68b60aXbxhyEaM7qZQ/exec";
+
 interface ConsultFormConfig {
   id: string;
   optionsLabel: string;
@@ -40,17 +42,70 @@ function ConsultFormCard({ config }: { config: ConsultFormConfig }) {
     setSelected((prev) => (prev.includes(opt) ? prev.filter((o) => o !== opt) : [...prev, opt]));
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const form = event.currentTarget;
-    const name = form.elements.namedItem(`${config.id}-name`) as HTMLInputElement;
-    const phone = form.elements.namedItem(`${config.id}-phone`) as HTMLInputElement;
-    const region = form.elements.namedItem(`${config.id}-region`) as HTMLInputElement;
+//   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+//     event.preventDefault();
+//     const form = event.currentTarget;
+//     const name = form.elements.namedItem(`${config.id}-name`) as HTMLInputElement;
+//     const phone = form.elements.namedItem(`${config.id}-phone`) as HTMLInputElement;
+//     const region = form.elements.namedItem(`${config.id}-region`) as HTMLInputElement;
 
-    if (selected.length === 0 || !name.value.trim() || !phone.value.trim() || !region.value.trim()) {
-      window.alert("필수 항목을 모두 입력해 주세요.");
-    }
+//     if (selected.length === 0 || !name.value.trim() || !phone.value.trim() || !region.value.trim()) {
+//       window.alert("필수 항목을 모두 입력해 주세요.");
+//     }
+//   };
+const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  event.preventDefault();
+
+  const form = event.currentTarget;
+
+  const name = form.elements.namedItem(`${config.id}-name`) as HTMLInputElement;
+  const phone = form.elements.namedItem(`${config.id}-phone`) as HTMLInputElement;
+  const region = form.elements.namedItem(`${config.id}-region`) as HTMLInputElement;
+  const memo = form.elements.namedItem(`${config.id}-memo`) as HTMLTextAreaElement;
+
+  // 필수값 확인
+  if (
+    selected.length === 0 ||
+    !name.value.trim() ||
+    !phone.value.trim() ||
+    !region.value.trim()
+  ) {
+    window.alert("필수 항목을 모두 입력해 주세요.");
+    return;
+  }
+
+  // Google Sheets로 보낼 데이터
+  const data = {
+    type: config.id,
+    selectedOptions: selected.join(", "),
+    name: name.value.trim(),
+    phone: phone.value.trim(),
+    region: region.value.trim(),
+    hasCard: hasCard === "yes" ? "예" : "아니요",
+    memo: memo.value.trim(),
   };
+
+  try {
+    await fetch(GOOGLE_SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8",
+      },
+      body: JSON.stringify(data),
+    });
+
+    window.alert("상담 신청이 완료되었습니다.");
+
+    // 입력값 초기화
+    setSelected([]);
+    setHasCard("yes");
+    form.reset();
+  } catch (error) {
+    console.error("상담 신청 오류:", error);
+    window.alert("상담 신청 중 오류가 발생했습니다.");
+  }
+};
 
   return (
     <form
@@ -151,7 +206,13 @@ function ConsultFormCard({ config }: { config: ConsultFormConfig }) {
         <label className="kt-consult-label" htmlFor={`${config.id}-memo`}>
           남기고싶은 메모
         </label>
-        <textarea id={`${config.id}-memo`} className="kt-consult-textarea" placeholder="궁금한 점을 남겨주세요." />
+        {/* <textarea id={`${config.id}-memo`} className="kt-consult-textarea" placeholder="궁금한 점을 남겨주세요." /> */}
+        <textarea
+            id={`${config.id}-memo`}
+            name={`${config.id}-memo`}
+            className="kt-consult-textarea"
+            placeholder="궁금한 점을 남겨주세요."
+            />
       </div>
 
       <button type="submit" className="kt-consult-submit">
